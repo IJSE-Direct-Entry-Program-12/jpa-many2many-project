@@ -8,6 +8,7 @@
 
         <class>lk.ijse.dep12.jpa.relationship.entity.Course</class>
         <class>lk.ijse.dep12.jpa.relationship.entity.Student</class>
+        <class>lk.ijse.dep12.jpa.relationship.entity.Enrollment</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
