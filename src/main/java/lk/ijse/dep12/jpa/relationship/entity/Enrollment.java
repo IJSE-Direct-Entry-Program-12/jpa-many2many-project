@@ -13,26 +13,20 @@ import java.sql.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "enrollment")
+@IdClass(EnrollmentPK.class)
 public class Enrollment implements Serializable {
-    @EmbeddedId
-    private EnrollmentPK enrollmentPK;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    private Student student;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "course_code", referencedColumnName = "code")
+    private Course course;
+
     private Date date;
     @Column(name = "registered_by")
     private String registeredBy;
-
-    @ManyToOne
-    @MapsId("studentId")
-    private Student student;
-
-    @ManyToOne
-    @MapsId("courseCode")
-    private Course course;
-
-    public Enrollment(Student student, Course course, Date date, String registeredBy) {
-        this.enrollmentPK = new EnrollmentPK(student.getId(), course.getCode());
-        this.student = student;
-        this.course = course;
-        this.date = date;
-        this.registeredBy = registeredBy;
-    }
 }
